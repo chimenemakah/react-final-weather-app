@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Weather from "./Weather";
+import "bootstrap/dist/css/bootstrap.css";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+      <h1>React Weather App</h1>
+      <Weather defaultCity="Kharkiv" />
+      <footer>
+        This project was coded by{" "}
         <a
-          className="App-link"
-          href="https://reactjs.org"
+          href="https://www.shecodes.io/graduates/72575-nataliia-shpak"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
-          Learn React
-        </a>
-      </header>
+          {" "}
+          Nataliia Shpak{" "}
+        </a>{" "}
+        {"  "}
+        and it is{" "}
+        <a
+          href="https://github.com/NataliShpak/react-week5"
+          target="_blank"
+          rel="noreferrer"
+        >
+          open-sources on GitHub{" "}
+        </a>{" "}
+        and hosted on Netlify
+      </footer>
     </div>
   );
 }
-
-export default App;
