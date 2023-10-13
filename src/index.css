@@ -1,6 +1,7 @@
 .container {
   max-width: 700px;
   margin: 60px auto 0;
+  background-color: aliceblue;
 }
 
 .weather-container {
