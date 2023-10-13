@@ -1,33 +1,32 @@
+import React from "react";
 import "./App.css";
-import Weather from "./Weather";
-import "bootstrap/dist/css/bootstrap.css";
 
-export default function App() {
+export default function DailyForecast() {
   return (
-    <div className="App">
-      <h1>React Weather App</h1>
       <Weather defaultCity="Kharkiv" />
-      <footer>
-        This project was coded by{" "}
+    <footer>
+      <div>
+        The project was coded by{" "}
         <a
-          href="https://www.shecodes.io/graduates/72575-nataliia-shpak"
+          href="www.linkedin.com/in/chimenemakah"
           target="_blank"
           rel="noreferrer"
         >
-          {" "}
-          Nataliia Shpak{" "}
-        </a>{" "}
-        {"  "}
-        and it is{" "}
+          Chimenem Esther Akah
+        </a>
+        , is{" "}
         <a
-          href="https://github.com/NataliShpak/react-week5"
+          href="https://github.com/chimenemakah/react-final-weather-app"
           target="_blank"
           rel="noreferrer"
         >
-          open-sources on GitHub{" "}
+          open-sourced on GitHub
         </a>{" "}
-        and hosted on Netlify
-      </footer>
-    </div>
+        "and"{" "}
+        <a href="" target="blank" rel="noreferrer">
+          Hosted on Netlify
+        </a>
+      </div>
+    </footer>
   );
 }
