@@ -23,7 +23,7 @@ export default function DailyForecast() {
           open-sourced on GitHub
         </a>{" "}
         "and"{" "}
-        <a href="" target="blank" rel="noreferrer">
+        <a href="/" target="blank" rel="noreferrer">
           Hosted on Netlify
         </a>
       </div>
