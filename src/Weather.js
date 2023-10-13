@@ -76,9 +76,9 @@ export default function Weather(props) {
       <div>
         <p>Loading...</p>
         <RotatingLines
-          strokeColor="grey"
+          strokeColor="blue"
           strokeWidth="5"
-          animationDuration="0.75"
+          animationDuration="0.85"
           width="50"
           visible={true}
         />
