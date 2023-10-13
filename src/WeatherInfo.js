@@ -1,39 +1,40 @@
 import React from "react";
+
+import "./Weather.css";
 import FormattedDate from "./FormattedDate";
-import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
 
-export default function WeatherInfo(props) {
+export default function weatherInfo(props) {
   return (
-    <div className="WeatherInfo">
-      <h2>{props.data.city}</h2>
-      <ul>
-        <li>
-          <FormattedDate date={props.data.date} />
-        </li>
-        <li className="text-capitalize">{props.data.description}</li>
-      </ul>
-      <div className="row mt-3">
+    <div className="current-weather">
+      <div className="row">
         <div className="col-6">
-          <div className="d-flex">
-            <div>
-              <WeatherIcon
-                code={props.data.icon}
-                alt={props.data.description}
-                size={52}
-              />
-            </div>
-            <div>
-              <WeatherTemperature celsius={props.data.temperature} />
-            </div>
-          </div>
-        </div>
-        <div className="col-6 mt-4">
-          <ul>
-            {/* <li>Precipitation: 15%</li> */}
-            <li>Humidity: {props.data.humidity} %</li>
-            <li>Wind: {props.data.wind} km/h</li>
+          <div className="current-city">{props.data.city}</div>
+          <ul className="weather-description">
+            <li>
+              <FormattedDate date={props.data.date} />
+            </li>
+            <li className="text-capitalize">{props.data.description}</li>
+            <li>
+              Wind:{" "}
+              <span className="accent">
+                {Math.round(props.data.wind)} km/h{" "}
+              </span>
+              , Humidity:{" "}
+              <span className="accent">{props.data.humidity}% </span>
+            </li>
           </ul>
+        </div>
+
+        <div className="col-6 d-flex justify-content-end">
+          <div className="weather-summary">
+            <img
+              src={props.data.icon}
+              alt={props.data.description}
+              className="weather-icon"
+            />{" "}
+            <WeatherTemperature celsius={props.data.temperature} />
+          </div>
         </div>
       </div>
     </div>

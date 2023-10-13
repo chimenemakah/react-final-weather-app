@@ -1,52 +1,36 @@
-import React, { useState, useEffect } from "react";
-// import WeatherIcon from "./WeatherIcon";
-import "./WeatherIcon.css";
-import axios from "axios";
-import WeatherForecastDay from "./WeatherForecastDay.js";
+import React from "react";
 
-export default function WeatherForecast(props) {
-  let [loaded, setLoaded] = useState(false);
-  let [forecast, setForecast] = useState(null);
+export default function WeatherForecastDay(props) {
+  function day() {
+    let date = new Date(props.data.time * 1000);
+    let day = date.getDay();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  useEffect(() => {
-    setLoaded(false);
-  }, [props.coordinates]);
-
-  function handleResponse(response) {
-    setForecast(response.data.daily);
-    setLoaded(true);
+    return days[day];
   }
 
-  function load() {
-    const apiKey = "a867e25f2d83db579421a57fd8e937ec";
-    let lon = props.coordinates.lon;
-    let lat = props.coordinates.lat;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
-    axios.get(apiUrl).then(handleResponse);
-  }
-  if (loaded) {
-    // console.log(forecast);
-    return (
-      <div className="WeatherForecast">
-        <div className="row">
-          {forecast.map(function (dailyForecast, index) {
-            if (index < 5) {
-              return (
-                <div className="col" key={index}>
-                  <WeatherForecastDay data={dailyForecast} />
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </div>
+  return (
+    <div>
+      {" "}
+      <div className="WeatherForecast-day"> {day()} </div>
+      <div className="WeatherForecast-icon">
+        <img
+          src={props.data.condition.icon_url}
+          alt={props.data.condition.description}
+          height="70"
+        />{" "}
       </div>
-    );
-  } else {
-    load();
-
-    return null;
-  }
+      <div className="WeatherForecast-temperatures">
+        {" "}
+        <span className="WeatherForecast-temperatures-max">
+          {" "}
+          {Math.round(props.data.temperature.maximum)}°{" "}
+        </span>{" "}
+        <span className="WeatherForecast-temperatures-min">
+          {" "}
+          {Math.round(props.data.temperature.minimum)}°{" "}
+        </span>
+      </div>
+    </div>
+  );
 }

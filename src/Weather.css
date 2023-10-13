@@ -1,64 +1,101 @@
+:root {
+  --primary-color: #1acbeb;
+  --accent-color: #000000;
+}
+
 body {
-  background-image: Image("/src/Image/clouds.png");
-  background-repeat: no-repeat;
-  background-size: 75%;
-  padding: 30px auto;
+  font-family: "Manrope", sans-serif;
 }
 
-.Weather {
-  background-color: rgb(57, 176, 192);
-  color: rgb(226, 222, 219);
-  border: 2px solid rgb(245, 242, 238);
-  border-radius: 5px;
-  padding: 16px;
-  box-shadow: 1px 1px 100px 1px rgb(73, 52, 20);
+a {
+  color: var(--primary-color);
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 200ms ease-in-out;
 }
 
-.Weather form {
-  margin-bottom: 20px;
+a:hover {
+  text-decoration: underline;
 }
 
-.Weather h1 {
-  display: block;
-  font-size: 24px;
-  font-weight: 100;
-  line-height: 29px;
-  margin: 20px 0 0 0;
+hr {
+  margin: 0px auto;
 }
 
-.Weather ul {
-  margin: 0;
+.search-engine {
+  margin-bottom: 10px;
+}
+
+.current-city {
+  font-size: 46px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.weather-description {
+  font-size: 14px;
+  list-style: none;
+  line-height: 1.5;
+  opacity: 0.7;
   padding: 0;
 }
 
-.Weather li {
-  font-size: 16px;
-  font-weight: 100;
-  line-height: 19px;
-  list-style: none;
+.accent {
+  color: var(--accent-color);
+  font-weight: 700;
 }
 
-.Weather canvas {
-  height: 64px;
-  width: 64px;
-  margin-right: 10px;
-  margin-top: 15px;
-  display: inline-block;
+.weather-icon {
+  width: 130px;
 }
 
-.Weather .temperature {
-  font-weight: bold;
-  /* color: rgb(33, 33, 33); */
-  font-size: 64px;
-  font-weight: 400;
-}
-
-.Weather .unit {
-  /* color: rgb(33, 33, 33); */
-  font-size: 16px;
-  font-weight: 400;
+.temp {
   position: relative;
-  top: -32px;
-  margin-left: 5px;
-  line-height: 1;
+  top: 18px;
+  right: 5px;
+}
+
+.temp-value {
+  font-size: 64px;
+  font-weight: 600;
+}
+
+.unit {
+  font-size: 18px;
+  font-weight: 700;
+  position: relative;
+  bottom: 34px;
+}
+
+@media (max-width: 576px) {
+  .form-control,
+  .search-button {
+    font-size: 10px;
+  }
+
+  .current-city,
+  .temp-value {
+    font-size: 24px;
+  }
+
+  .temp {
+    top: 5px;
+  }
+
+  .unit {
+    font-size: 10px;
+    bottom: 10px;
+  }
+
+  .weather-description {
+    font-size: 10px;
+  }
+
+  .weather-icon {
+    width: 80px;
+  }
+
+  footer {
+    font-size: 10px;
+  }
 }

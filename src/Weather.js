@@ -1,37 +1,33 @@
 import React, { useState } from "react";
-import "./Weather.css";
 import axios from "axios";
-import WeatherInfo from "./WeatherInfo.js";
-import WeatherForecast from "./WeatherForecast.js";
+import { RotatingLines } from "react-loader-spinner";
+import "./Weather.css";
+import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Weather(props) {
-  const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
+  const [weather, setWeather] = useState({ ready: false });
 
-  function handleResponse(response) {
-    // console.log(response.data);
-    // console.log(city);
-    setWeatherData({
+  function showWeather(response) {
+    setWeather({
       ready: true,
-      coordinates: response.data.coord,
-      temperature: response.data.main.temp,
-      humidity: response.data.main.humidity,
-      date: new Date(response.data.dt * 1000),
-      description: response.data.weather[0].description,
-      icon: response.data.weather[0].icon,
-      iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}`,
+      city: response.data.city,
+      date: new Date(response.data.time * 1000),
+      temperature: response.data.temperature.current,
+      icon: response.data.condition.icon_url,
+      description: response.data.condition.description,
       wind: response.data.wind.speed,
-      city: response.data.name,
+      humidity: response.data.temperature.humidity,
     });
   }
 
   function search() {
-    const apiKey = "a867e25f2d83db579421a57fd8e937ec";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
+    const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=93co25d01feb2baacba3f4a1c2ate2b7`;
+    axios.get(apiUrl).then(showWeather);
   }
 
-  function handlSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
     search();
   }
@@ -40,36 +36,53 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
-  if (weatherData.ready) {
+  if (weather.ready) {
     return (
-      <div className="Weather">
-        <form onSubmit={handlSubmit}>
-          <div className="row">
-            <div className="col-9">
-              <input
-                type="search"
-                placeholder="Enter e city.."
-                className="form-control"
-                autoFocus="on"
-                onChange={handleCityChange}
-              />
+      <div className="weather-app">
+        <div className="search-engine">
+          <form onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="col-9">
+                <input
+                  type="search"
+                  className="form-control"
+                  placeholder="🔍 Search City"
+                  autoFocus="on"
+                  autoComplete="off"
+                  onChange={handleCityChange}
+                />
+              </div>
+
+              <div className="col-3">
+                <button
+                  type="submit"
+                  className="btn btn-info shadow search-button w-100"
+                >
+                  Search
+                </button>
+              </div>
             </div>
-            <div className="col-3">
-              <input
-                type="submit"
-                value="Search"
-                className="btn btn-info w-100"
-              />
-            </div>
-          </div>
-        </form>
-        <WeatherInfo data={weatherData} />
-        <WeatherForecast coordinates={weatherData.coordinates} />
+          </form>
+        </div>
+        <WeatherInfo data={weather} />
+        <hr />
+        <WeatherForecast city={weather.city} />
       </div>
     );
   } else {
     search();
 
-    return "Loading...";
+    return (
+      <div>
+        <p>Loading...</p>
+        <RotatingLines
+          strokeColor="grey"
+          strokeWidth="5"
+          animationDuration="0.75"
+          width="50"
+          visible={true}
+        />
+      </div>
+    );
   }
 }
