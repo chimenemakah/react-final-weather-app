@@ -1,13 +1,17 @@
 body {
-  background-image: Image("/src/Image/cloud.png");
-  background-repeat: space;
-  background-size: cover;
+  background-image: Image("/src/Image/clouds.png");
+  background-repeat: no-repeat;
+  background-size: 75%;
+  padding: 30px auto;
 }
 
 .Weather {
-  color: rgb(19, 2, 2);
+  background-color: rgb(57, 176, 192);
+  color: rgb(226, 222, 219);
+  border: 2px solid rgb(245, 242, 238);
   border-radius: 5px;
   padding: 16px;
+  box-shadow: 1px 1px 100px 1px rgb(73, 52, 20);
 }
 
 .Weather form {
