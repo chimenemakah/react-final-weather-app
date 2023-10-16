@@ -3,7 +3,6 @@ import "./App.css";
 
 export default function DailyForecast() {
   return (
-      <Weather defaultCity="Kharkiv" />
     <footer>
       <div>
         The project was coded by{" "}
@@ -22,10 +21,6 @@ export default function DailyForecast() {
         >
           open-sourced on GitHub
         </a>{" "}
-        "and"{" "}
-        <a href="/" target="blank" rel="noreferrer">
-          Hosted on Netlify
-        </a>
       </div>
     </footer>
   );
