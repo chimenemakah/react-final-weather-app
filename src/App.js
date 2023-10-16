@@ -21,6 +21,13 @@ export default function DailyForecast() {
         >
           open-sourced on GitHub
         </a>{" "}
+        <a
+          href="https://react-weatherapp-5d35c1.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          ,Hosted on Netlify
+        </a>{" "}
       </div>
     </footer>
   );
